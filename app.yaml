@@ -1,0 +1,15 @@
+application: beaming-theorem-573
+version: 1
+runtime: python27
+threadsafe: true
+api_version: 1
+
+handlers:
+
+- url: .*
+  script: main.app
+
+libraries:
+
+- name: jinja2
+  version: latest
