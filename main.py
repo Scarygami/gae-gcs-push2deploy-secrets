@@ -56,16 +56,6 @@ from flaskext.kvsession import KVSessionExtension
 
 APPLICATION_NAME = 'Push-to-Deploy Credentials'
 
-app = Flask(__name__)
-app.secret_key = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                         for x in xrange(32))
-
-# See the simplekv documentation for details
-store = DictStore()
-
-# This will replace the app's session handling
-KVSessionExtension(store, app)
-
 # GCS Parameters
 my_default_retry_params = gcs.RetryParams(initial_delay=0.2,
                                           max_delay=5.0,
@@ -90,9 +80,19 @@ if secrets_file is not None:
   client_secrets = json.loads(secrets_file.read())['web']
   CLIENT_ID = client_secrets['client_id']
   CLIENT_SECRET = client_secrets['client_secret']
+  logging.info(CLIENT_ID)
 
 SERVICE = build('plus', 'v1')
 
+app = Flask(__name__)
+app.secret_key = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                         for x in xrange(32))
+
+# See the simplekv documentation for details
+store = DictStore()
+
+# This will replace the app's session handling
+KVSessionExtension(store, app)
 
 @app.route('/', methods=['GET'])
 def index():
