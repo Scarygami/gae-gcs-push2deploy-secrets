@@ -84,7 +84,7 @@ CLIENT_SECRET = None
 try:
     secrets_file = gcs.open(bucket + '/' + 'client_secrets.json', 'r')
 except gcs.NotFoundError:
-    logging.error('client_secret.json not found in default bucket')
+    logging.error('client_secrets.json not found in default bucket')
 
 if secrets_file is not None:
   client_secrets = json.loads(secrets_file.read())['web']
@@ -99,7 +99,7 @@ def index():
   """Initialize a session for the current user, and render index.html."""
   
   if CLIENT_ID is None:
-      response = make_response('client_secret.json not found in default bucket, project not initialized correctly.', 500)
+      response = make_response('client_secrets.json not found in default bucket, project not initialized correctly.', 500)
       return response
   
   # Create a state token to prevent request forgery.
