@@ -80,7 +80,6 @@ if secrets_file is not None:
   client_secrets = json.loads(secrets_file.read())['web']
   CLIENT_ID = client_secrets['client_id']
   CLIENT_SECRET = client_secrets['client_secret']
-  logging.info(CLIENT_ID)
 
 SERVICE = build('plus', 'v1')
 
@@ -93,6 +92,7 @@ store = DictStore()
 
 # This will replace the app's session handling
 KVSessionExtension(store, app)
+
 
 @app.route('/', methods=['GET'])
 def index():
