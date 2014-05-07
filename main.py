@@ -83,7 +83,7 @@ except gcs.NotFoundError:
     logging.error('client_secret.json not found in default bucket')
 
 if secrets_file is not None:
-  client_secrets = json.loads(secrets.read())['web']
+  client_secrets = json.loads(secrets_file.read())['web']
   CLIENT_ID = client_secrets['client_id']
   CLIENT_SECRET = client_secrets['client_secret']
 
