@@ -29,6 +29,7 @@ __author__ = 'scarygami@gmail.com (Gerwin Sturm)'
 import sys
 sys.path.insert(0, 'lib')
 
+import os
 import logging
 import json
 import random
