@@ -78,7 +78,7 @@ gcs.set_default_retry_params(my_default_retry_params)
 bucket = '/' + os.environ.get('BUCKET_NAME', app_identity.get_default_gcs_bucket_name())
 
 try:
-    secrets_file = gcs.open(bucket + '/' + client_secret.json, 'r')
+    secrets_file = gcs.open(bucket + '/' + 'client_secret.json', 'r')
 except gcs.NotFoundError:
     logging.error('client_secret.json not found in default bucket')
 
